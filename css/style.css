@@ -1,0 +1,833 @@
+:root {
+    --primary-text: #fff; /* Warna teks utama di hero */
+    --secondary-text: #ddd; /* Warna teks sekunder di hero */
+    --accent-color: #f0e68c; /* Warna aksen, mirip emas/kuning muda */
+    --box-bg: rgba(255, 255, 255, 0.2); /* Background box countdown */
+    --box-border: rgba(255, 255, 255, 0.4); /* Border box countdown */
+    --footer-bg: #5a3c5a; /* Warna background footer navigasi */
+    --footer-item-bg: #8c6a8c; /* Warna background item footer */
+    --footer-border: #6d4c6d; /* Border item footer */
+    --main-section-bg: #fdfdfd; /* Background untuk section utama */
+    --main-section-alt-bg: #f5f5f5; /* Background alternatif untuk section utama */
+    --dark-text: #333;
+    --medium-text: #555;
+    --border-color-light: #e0e0e0;
+}
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-text);
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    background-color: var(--main-section-bg); /* Background body global */
+}
+
+/* --- Utilities --- */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Padding horizontal default */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: url('../img/bg1.webp') no-repeat center center / cover; /* Ganti dengan path gambar Anda */
+    position: relative;
+    padding-top: 50px; /* Ruang dari atas untuk konten */
+    padding-bottom: 100px; /* Ruang untuk footer-nav */
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay gelap */
+    z-index: 0;
+}
+
+/* Konten Utama di Hero Section */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Dorong ke bawah jika hero tinggi */
+    margin-bottom: auto; /* Dorong ke atas jika hero tinggi */
+    flex-grow: 1; /* Agar mengambil ruang vertikal yang tersedia */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.greeting-text {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+    letter-spacing: 1px;
+}
+
+.couple-names {
+    font-family: 'Dancing Script', cursive; /* Font tulisan tangan */
+    font-size: 4.5rem; /* Ukuran besar */
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+    color: var(--primary-text);
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.wedding-date {
+    font-family: 'Playfair Display', serif; /* Font elegan untuk tanggal */
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-text);
+    letter-spacing: 2px;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    display: flex;
+    gap: 15px; /* Jarak antar box */
+    margin-bottom: 3rem;
+    justify-content: center;
+    flex-wrap: wrap; /* Untuk responsif di layar kecil */
+}
+
+.time-box {
+    background-color: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px; /* Lebar minimum agar tidak terlalu kecil */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px); /* Efek blur pada background box */
+}
+
+.time-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.time-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--secondary-text);
+    letter-spacing: 1px;
+}
+
+/* Guest Information */
+.guest-intro {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+}
+
+.guest-name {
+    font-family: 'Dancing Script', cursive; /* Font tulisan tangan untuk nama tamu */
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color); /* Warna aksen untuk nama tamu */
+    text-shadow: 0 0 5px rgba(255,215,0,0.5);
+}
+
+.invitation-phrase {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 30px;
+}
+
+/* --- Footer Navigation --- */
+.footer-nav {
+    position: fixed; /* Tetap di bawah layar */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--footer-bg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+    z-index: 1000; /* Pastikan di atas konten lain */
+    border-top: 1px solid var(--footer-border);
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    border-right: 1px solid var(--footer-border); /* Garis pembatas */
+}
+
+.nav-item:last-child {
+    border-right: none; /* Hapus garis pembatas terakhir */
+}
+
+.nav-item a {
+    color: var(--primary-text);
+    font-size: 1.8rem; /* Ukuran ikon */
+    display: block; /* Agar ikon mengisi area */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* --- Main Sections Styling (Kisah, Mempelai, Acara, Galeri, RSVP, Hadiah) --- */
+.main-section {
+    padding: 6rem 0; /* Padding vertikal untuk setiap section */
+    background-color: var(--main-section-bg);
+    color: var(--dark-text);
+}
+
+.main-section.bg-light {
+    background-color: var(--main-section-alt-bg);
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--footer-bg); /* Warna gelap yang elegan */
+}
+
+.section-title span {
+    color: var(--accent-color); /* Warna aksen untuk bagian 'span' */
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1rem;
+    text-align: center;
+    color: var(--medium-text);
+}
+
+.section-content p {
+    margin-bottom: 1.2rem;
+}
+
+.section-decoration {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--accent-color);
+    line-height: 1.5;
+}
+
+.section-note {
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--medium-text);
+    margin-top: 2rem;
+}
+
+/* --- Mempelai Section --- */
+.couple-info {
+    display: flex;
+    flex-wrap: wrap; /* Agar responsif */
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.person-card {
+    flex: 1 1 250px; /* Fleksibel, minimal 250px */
+    text-align: center;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.person-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.person-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--footer-bg);
+}
+
+.person-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--dark-text);
+}
+
+.and-symbol {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin: 0 1rem; /* Spasi antar kartu dan simbol '&' */
+    line-height: 1; /* Agar tidak terlalu tinggi */
+}
+
+/* --- Acara Section --- */
+.event-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    max-width: 600px; /* Batasi lebar card acara */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card h3 {
+    font-size: 2rem;
+    color: var(--footer-bg);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.event-card h3 i {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+}
+
+.event-card p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    color: var(--dark-text);
+}
+
+.event-card p strong {
+    color: var(--footer-bg);
+}
+
+.btn-lokasi {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--footer-bg);
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-lokasi i {
+    font-size: 1.2rem;
+}
+
+.btn-lokasi:hover {
+    background-color: #6d4c6d; /* Sedikit lebih gelap */
+    transform: translateY(-2px);
+}
+
+/* --- Galeri Section --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 280px; /* Tinggi tetap untuk gambar galeri */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* --- RSVP Section (Konfirmasi Kehadiran) --- */
+.rsvp-undangan .section-intro {
+    margin-bottom: 2.5rem;
+}
+
+.rsvp-undangan form {
+    max-width: 500px;
+    margin: 0 auto 2.5rem; /* Meningkatkan margin bawah */
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Bayangan lebih kuat */
+    border: 1px solid var(--border-color-light); /* Border tipis */
+}
+
+.rsvp-undangan .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.8rem; /* Meningkatkan margin bawah */
+    border: 1px solid var(--border-color-light);
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.rsvp-undangan .input-group:focus-within {
+    border-color: var(--accent-color); /* Border berubah saat focus */
+}
+
+.rsvp-undangan .input-group i {
+    font-size: 1.4rem;
+    color: var(--footer-bg);
+    margin-right: 1rem;
+}
+
+.rsvp-undangan .input-group input[type="text"],
+.rsvp-undangan .input-group input[type="number"] {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    color: var(--dark-text);
+}
+.rsvp-undangan .input-group input::placeholder {
+    color: #999;
+}
+
+
+.rsvp-undangan .input-group.radio-group {
+    border: none;
+    justify-content: center;
+    gap: 2rem; /* Meningkatkan jarak antar radio */
+    color: var(--dark-text);
+    margin-top: 2rem; /* Memberi ruang dari input sebelumnya */
+    margin-bottom: 2rem; /* Memberi ruang ke tombol */
+}
+
+.rsvp-undangan .input-group.radio-group label {
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--dark-text);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.rsvp-undangan .input-group.radio-group input[type="radio"] {
+    width: 1.1rem; /* Ukuran radio lebih besar */
+    height: 1.1rem; /* Ukuran radio lebih besar */
+    cursor: pointer;
+    accent-color: var(--footer-bg); /* Warna radio button saat terpilih */
+}
+
+.btn-submit {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: var(--footer-bg);
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Lebar penuh di dalam form */
+}
+
+.btn-submit:hover {
+    background-color: #6d4c6d;
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background-color: #25D366; /* WhatsApp Green */
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 1.5rem; /* Meningkatkan margin atas */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-whatsapp i {
+    font-size: 1.2rem;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1DA851;
+    transform: translateY(-2px);
+}
+
+.message-decoration {
+    font-size: 1.5rem; /* Ukuran font lebih kecil untuk quotes */
+    margin-top: 2.5rem !important; /* Pastikan ada ruang */
+}
+
+/* RSVP Success Message */
+#rsvpSuccessMessage {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    font-size: 1rem;
+}
+
+
+/* --- Hadiah Section (Kado & Doa Restu) --- */
+.gift-undangan .section-intro {
+    margin-bottom: 2.5rem;
+}
+
+.bank-info-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Bayangan lebih kuat */
+    padding: 2.5rem;
+    max-width: 400px;
+    margin: 0 auto 2.5rem; /* Meningkatkan margin bawah */
+    border: 1px solid var(--border-color-light); /* Border tipis */
+    transition: transform 0.3s ease;
+}
+
+.bank-info-card:hover {
+    transform: translateY(-5px); /* Efek angkat saat hover */
+}
+
+.bank-info-card h3 {
+    font-size: 1.8rem;
+    color: var(--footer-bg);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.bank-info-card h3 i {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+}
+
+.bank-info-card p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark-text);
+}
+
+.bank-info-card p strong {
+    color: var(--footer-bg);
+}
+
+.copy-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1.5rem; /* Meningkatkan margin atas */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600; /* Lebih tebal */
+    border: none; /* Hilangkan border default */
+}
+
+.copy-btn:hover {
+    background-color: #DAA520;
+    transform: translateY(-2px);
+}
+
+/* --- Closing Section --- */
+.closing-section {
+    padding: 6rem 0;
+    background-color: var(--footer-bg); /* Warna gelap yang konsisten */
+    color: var(--primary-text);
+    text-align: center;
+}
+
+.closing-section p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.closing-section .closing-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    margin-top: 2rem;
+    text-shadow: 0 0 5px rgba(255,215,0,0.5);
+}
+
+.final-gratitude {
+    font-size: 1.2rem !important; /* Override p default */
+    font-weight: 600;
+    margin-top: 3rem !important;
+}
+
+
+/* --- Responsive Design (Enhanced) --- */
+
+/* For smaller desktops and large tablets (up to 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1rem; /* Sedikit kurang padding di container */
+    }
+    .hero-section .content-wrapper {
+        padding: 15px;
+    }
+    .couple-names {
+        font-size: 4rem;
+    }
+    .wedding-date {
+        font-size: 1.7rem;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* For tablets and medium devices (up to 768px) */
+@media (max-width: 768px) {
+    .couple-names {
+        font-size: 3.5rem;
+    }
+    .wedding-date {
+        font-size: 1.4rem;
+    }
+    .time-box {
+        padding: 12px 18px;
+        min-width: 80px;
+    }
+    .time-value {
+        font-size: 2.2rem;
+    }
+    .time-label {
+        font-size: 0.75rem;
+    }
+    .guest-name {
+        font-size: 2.4rem;
+    }
+    .invitation-phrase {
+        font-size: 1rem;
+    }
+    .nav-item a {
+        font-size: 1.6rem;
+    }
+    .main-section {
+        padding: 5rem 0; /* Kurangi padding vertikal */
+    }
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    .section-content {
+        font-size: 0.95rem;
+        padding: 0 1rem; /* Tambah padding di konten */
+    }
+    .section-decoration {
+        font-size: 1.6rem;
+        margin-top: 2rem;
+    }
+    .couple-info {
+        flex-direction: column; /* Tumpuk kartu di mobile */
+        gap: 2rem;
+    }
+    .person-card {
+        flex: 1 1 auto; /* Ambil lebar penuh */
+        max-width: 300px; /* Batasi lebar agar tidak terlalu besar */
+        padding: 1.5rem;
+    }
+    .and-symbol {
+        margin: 1.5rem 0; /* Spasi vertikal antar kartu */
+    }
+    .event-card {
+        padding: 2rem;
+    }
+    .event-card h3 {
+        font-size: 1.8rem;
+    }
+    .event-card p {
+        font-size: 0.95rem;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+    .gallery-grid img {
+        height: 220px;
+    }
+    .rsvp-undangan form,
+    .bank-info-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    .rsvp-undangan .input-group input[type="text"],
+    .rsvp-undangan .input-group input[type="number"] {
+        padding: 0.6rem;
+    }
+    .rsvp-undangan .input-group.radio-group {
+        gap: 1.5rem;
+    }
+    .btn-submit, .btn-whatsapp, .copy-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    .closing-section p {
+        font-size: 1rem;
+    }
+    .closing-section .closing-names {
+        font-size: 3rem;
+    }
+    .final-gratitude {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* For small phones (up to 480px) */
+@media (max-width: 480px) {
+    .hero-section {
+        padding-top: 30px;
+    }
+    .couple-names {
+        font-size: 2.8rem;
+    }
+    .wedding-date {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .countdown-timer {
+        gap: 8px;
+        margin-bottom: 2rem;
+    }
+    .time-box {
+        padding: 10px 12px;
+        min-width: 60px;
+    }
+    .time-value {
+        font-size: 1.8rem;
+    }
+    .time-label {
+        font-size: 0.65rem;
+    }
+    .guest-name {
+        font-size: 1.8rem;
+    }
+    .invitation-phrase {
+        font-size: 0.9rem;
+    }
+    .nav-item a {
+        font-size: 1.3rem;
+    }
+    .footer-nav {
+        padding: 6px 0;
+    }
+    .main-section {
+        padding: 4rem 0;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .section-content {
+        padding: 0 0.8rem;
+    }
+    .section-decoration {
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+    }
+    .person-card {
+        width: 100%;
+        padding: 1rem;
+    }
+    .event-card {
+        padding: 1.5rem;
+    }
+    .event-card h3 {
+        font-size: 1.5rem;
+    }
+    .event-card p {
+        font-size: 0.9rem;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Satu kolom di mobile sangat kecil */
+    }
+    .gallery-grid img {
+        height: 200px;
+    }
+    .rsvp-undangan form,
+    .bank-info-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .rsvp-undangan .input-group {
+        margin-bottom: 1.5rem;
+    }
+    .rsvp-undangan .input-group.radio-group {
+        gap: 1rem;
+    }
+    .btn-submit, .btn-whatsapp, .copy-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .closing-section p {
+        font-size: 0.95rem;
+    }
+    .closing-section .closing-names {
+        font-size: 2.5rem;
+    }
+    .final-gratitude {
+        font-size: 1rem !important;
+    }
+}
